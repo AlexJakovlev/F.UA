@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style type="text/css">
+	
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	margin-top: 20px;
+}
+
+ul{
+	width: 470px;
+	margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+li{
+	display: inline-block;
+	list-style-type: none;
+	height: 150px;
+	width: 150px;
+	background-color: green;
+	margin: 0 10px 10px 0;
+
+}
+
+li:nth-child(3n){
+	margin-right: 0;
+}
+
+li:nth-last-child(-n+3){
+	margin-bottom: 0;
+}
+#js_color{
+	width: fit-content;
+	margin: 20px auto;
+	font-size: 28px;
+	font-weight: 700;
+	/* color: white; */
+	/* transition: all 2s; */
+}
+#jquery_color{
+	width: fit-content;
+	margin: 20px auto;
+	font-size: 28px;
+	font-weight: 700;
+	/* color: white; */
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+	<div id="js_color">JS => Текст меняющий цвет: </div>
+	<div id="jquery_color">JQuery => Текст меняющий цвет: </div>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>'use strict'
+
+
+	function js_colors() {
+		const clr = new Array("Red", "Orange", "Yellow", "green", "SkyBlue", "blue", "Purple")
+		const len_clr = clr.length - 1;
+		let elem = document.getElementById("js_color");
+		let text = elem.textContent;
+		let i = 0;
+		let delta;
+		elem.style.color = clr[i];
+		elem.textContent = text + " " + clr[i];
+		elem.style.transition = "all 2s";
+		var a = setInterval(function () {
+			if (i == len_clr) delta = -1;
+			if (i == 0) delta = +1;
+			elem.textContent = text + " " + clr[i];
+			elem.style.color = clr[i];
+			i = i + delta;
+		}, 4000);
+
+	}
+
+
+	class jQc {
+
+		JQuery_colors() {
+			const JQuery_clr = new Array("Red", "#FFA500", "Yellow", "green", "#87CEEB", "blue", "Purple")
+			const len_clr = JQuery_clr.length - 1;
+			console.log()
+			let text = $("#jquery_color").text();
+			let i = 0;
+			let delta;
+			$("#jquery_color").text(text + " " + JQuery_clr[i]);
+			$("#jquery_color").animate({
+				color: JQuery_clr[i]
+			}, 2000);
+			setInterval(function () {
+				if (i == len_clr) delta = -1;
+				if (i == 0) delta = +1;
+				$("#jquery_color").animate({
+					color: JQuery_clr[i]
+				}, 2000);
+
+				$("#jquery_color").text(text + " " + JQuery_clr[i]);
+				i = i + delta;
+			}, 4000);
+		}
+	}
+	js_colors();
+	const text = new jQc();
+	text.JQuery_colors();</script>
+
+</html>
